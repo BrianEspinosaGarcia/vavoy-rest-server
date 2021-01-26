@@ -1,7 +1,7 @@
 require('./config/config');
 const express = require('express');
 const mongoose = require('mongoose');
-//const cors = require('cors');
+const cors = require('cors');
 const app = express();
 const bodyParser = require('body-parser');
 
@@ -10,12 +10,7 @@ const bodyParser = require('body-parser');
 app.use( bodyParser.urlencoded( { extended: false }));
 app.use(bodyParser.json());
 app.use( require('./routes/traveler') );
-/* app.use( cors() );
-app.use( (req,res,next) => {
-    res.header("Access-Control-Allow-Origin","*");
-    res.header("Access-Control-Allow-Headers","Origin, X-Requested-With, Content-Type, Accept");
-    next();
-  }) */
+app.use( cors() );
 
 mongoose.connect( process.env.NODE_URLDB , 
                   {useNewUrlParser:true, useCreateIndex:true, useUnifiedTopology: true},
