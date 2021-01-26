@@ -10,6 +10,6 @@ let urlDB;
 if( process.env.NODE_ENV === 'dev') {
     urlDB = 'mongodb://localhost:27017/vavoyTravelers';
 } else {
-    urlDB = 'mongodb+srv://vavoyadmin:eGMYCAs2Y6FtAlhC@cluster0.rzktn.mongodb.net/customers';
+    urlDB = process.env.MONGO_URI;
 }
 process.env.NODE_URLDB = urlDB;
