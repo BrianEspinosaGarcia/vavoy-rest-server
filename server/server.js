@@ -11,12 +11,19 @@ app.use( bodyParser.urlencoded( { extended: false }));
 app.use(bodyParser.json());
 app.use( require('./routes/traveler') );
 app.use( cors() );
+app.use( (req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header(
+        "Access-Control-Allow-Headers",
+        "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+    );
+})
 
 mongoose.connect( process.env.NODE_URLDB , 
                   {useNewUrlParser:true, useCreateIndex:true, useUnifiedTopology: true},
                   (err, resp) => {
                       if( err ) throw err;
-                      console.log("Connecto to DB succesfull");
+                      console.log("Connect to DB succesfull");
                 });
 
 
